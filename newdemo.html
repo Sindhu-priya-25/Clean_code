@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .paragraph {
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    
+    .read-more-link {
+      color: blue;
+      cursor: pointer;
+    }
+    
+    .footer {
+      background-color: #f9f9f9;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .columns {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+    
+    .column {
+      flex-basis: 30%;
+    }
+    
+    .column-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    
+    .column-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .column-description {
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script>
+    function toggleReadMore() {
+      var paragraph = document.getElementById("content");
+      var readMoreLink = document.getElementById("readMoreLink");
+
+      if (paragraph.style.maxHeight) {
+        // Paragraph is currently expanded, so collapse it
+        paragraph.style.maxHeight = null;
+        readMoreLink.innerText = "Read More";
+      } else {
+        // Paragraph is currently collapsed, so expand it
+        paragraph.style.maxHeight = paragraph.scrollHeight + "px";
+        readMoreLink.innerText = "Read Less";
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to My Website</h1>
+    <div id="content" class="paragraph">
+      <p>
+        The sun slowly descended below the horizon, casting a warm golden glow across the tranquil landscape. As dusk settled in, a gentle breeze rustled through the leaves, creating a soothing symphony. The air was filled with the fragrance of blooming flowers, their vibrant colors painting a picturesque scene. Birds chirped their melodious tunes, bidding farewell to another day. In the distance, a river flowed peacefully, reflecting the fading light like a mirror. It was a moment of serenity, where time seemed to stand still, and nature embraced its quiet beauty.The bustling city streets hummed with life as people hurriedly went about their day. Skyscrapers reached towards the heavens, their glass facades shimmering under the bright sunlight. Taxis weaved through the labyrinthine roads, their horns adding to the symphony of urban sounds. Sidewalks were adorned with a colorful tapestry of diverse faces, each with their own stories and destinations. Cafés spilled over with laughter and conversations, blending with the aroma of freshly brewed coffee. Amidst the urban chaos, there was an undeniable energy, an electrifying pulse that made the city come alive. It was a place where dreams intertwined with reality, where opportunities awaited at every corner.
+      </p>
+    </div>
+    <div>
+      <a id="readMoreLink" class="read-more-link" onclick="toggleReadMore()">Read More</a>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <i class="fas fa-star column-icon"></i>
+        <h3 class="column-title">Design</h3>
+        <p class="column-description">The sun slowly descended below the horizon, casting a warm golden glow across the tranquil landscape. As dusk settled in, a gentle breeze rustled through the leaves, creating a soothing symphony. The air was filled with the fragrance of blooming flowers, their vibrant colors painting a picturesque scene. </p>
+      </div>
+      <div class="column">
+        <i class="fas fa-heart column-icon"></i>
+        <h3 class="column-title">natural</h3>
+        <p class="column-description">Birds chirped their melodious tunes, bidding farewell to another day. In the distance, a river flowed peacefully, reflecting the fading light like a mirror. It was a moment of serenity, where time seemed to stand still, and nature embraced its quiet beauty.The bustling city streets hummed with life as people hurriedly went about their day..</p>
+      </div>
+      <div class="column">
+        <i class="fas fa-globe column-icon"></i>
+        <h3 class="column-title">Production</h3>
+        <p class="column-description">Cafés spilled over with laughter and conversations, blending with the aroma of freshly brewed coffee. Amidst the urban chaos, there was an undeniable energy, an electrifying pulse that made the city come alive. It was a place where dreams intertwined with reality, where opportunities awaited at every corner.</p>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <p>&copy; 2023 My Website. All rights reserved.</p>
+  </footer>
+</body>
+</html>

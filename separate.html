@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Display Location on Map (Leaflet)</title>
+  <h2> get my location</h2>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    #map {
+      height: 400px;
+    }
+  </style>
+  <script>
+    function showLocation() {
+      var latitude = parseFloat(document.getElementById('latitude').value);
+      var longitude = parseFloat(document.getElementById('longitude').value);
+      
+      var map = L.map('map').setView([latitude, longitude], 15);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+        maxZoom: 18
+      }).addTo(map);
+      L.marker([latitude, longitude]).addTo(map);
+      
+      var locationDiv = document.getElementById('location');
+      locationDiv.textContent = 'Latitude: ' + latitude + ', Longitude: ' + longitude;
+      
+      // Reverse geocoding using Nominatim API
+      var nominatimUrl = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + latitude + '&lon=' + longitude;
+      fetch(nominatimUrl)
+        .then(response => response.json())
+        .then(data => {
+          var address = data.display_name;
+          var addressDiv = document.getElementById('address');
+          addressDiv.textContent = 'Address: ' + address;
+        })
+        .catch(error => {
+          console.log('Error:', error);
+        });
+    }
+  </script>
+</head>
+<body>
+  <div>
+    Latitude: <input type="text" id="latitude">
+    <br>
+    <br>
+    Longitude: <input type="text" id="longitude">
+    <br>
+    <br>
+    <button onclick="showLocation()">Show Location</button>
+  </div>
+  <div id="map"></div>
+  <div id="location"></div>
+  <div id="address"></div>
+</body>
+</html>

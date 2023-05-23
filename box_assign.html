@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+    }
+    
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .container {
+      display: grid;
+      grid-template-columns: 200px auto;
+      grid-template-rows: 100px auto;
+      grid-template-areas:
+        "sidebar header"
+        "sidebar content";
+      grid-gap: 20px;
+      padding: 20px;
+    }
+    
+    .sidebar {
+      grid-area: sidebar;
+      background-color: #f1f1f1;
+      padding: 20px;
+    }
+    
+    .content {
+      grid-area: content;
+      background-color: #f9f9f9;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+    }
+    
+    .box {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Header</h1>
+  </header>
+  
+  <div class="container">
+    <div class="sidebar">
+      <h2>Sidebar</h2>
+    </div>
+    
+    <div class="content">
+      <div class="box">Box 1</div>
+      <div class="box">Box 2</div>
+      <div class="box">Box 3</div>
+      <div class="box">Box 4</div>
+      <div class="box">Box 5</div>
+      <div class="box">Box 6</div>
+    </div>
+  </div>
+  
+  <footer>
+    <p>Footer</p>
+  </footer>
+</body>
+</html>

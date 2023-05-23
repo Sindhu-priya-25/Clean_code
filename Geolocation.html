@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaflet Map with Reverse Geocoding</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 400px;
+    }
+    #location {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Get my Location</h1>
+  <form>
+    <label for="latitude">Latitude:</label>
+    <input type="text" id="latitude" />
+    <label for="longitude">Longitude:</label>
+    <input type="text" id="longitude" />
+    <button type="button" onclick="showLocation()">Show Location</button>
+  </form>
+  <div id="map"></div>
+  <div id="location"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    var mymap;
+
+    function showLocation() {
+      var latitude = parseFloat(document.getElementById("latitude").value);
+      var longitude = parseFloat(document.getElementById("longitude").value);
+
+      if (isNaN(latitude) || isNaN(longitude)) {
+        alert("Please enter valid latitude and longitude values.");
+        return;
+      }
+
+      if (mymap) {
+        mymap.remove(); // Remove the existing map if it already exists
+      }
+
+      // Reverse Geocoding
+      var reverseGeocodingUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
+
+      axios.get(reverseGeocodingUrl)
+        .then(function(response) {
+          var address = response.data.address;
+          var locationName = address?.town || address?.city || address?.village || address?.county || address?.state || 'Unknown Location';
+          document.getElementById("location").innerHTML = "Location: " + locationName;
+        })
+        .catch(function(error) {
+          console.log(error);
+          document.getElementById("location").innerHTML = "Error occurred during reverse geocoding.";
+        });
+
+      // Leaflet Map
+      mymap = L.map('map').setView([latitude, longitude], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+      }).addTo(mymap);
+      L.marker([latitude, longitude]).addTo(mymap);
+    }
+  </script>
+</body>
+</html>

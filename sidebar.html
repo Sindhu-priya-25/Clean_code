@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    
+    html, body, .container {
+      height: 100%;
+    }
+    
+    .container {
+      display: flex;
+    }
+    
+    .sidebar {
+      width: 200px;
+      background-color: orange; /* Change the background color to orange */
+      color: black;
+      padding: 20px;
+    }
+    
+    .menu {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .menu li {
+      margin-bottom: 10px;
+    }
+    
+    .menu li a {
+      color: darkblue; /* Change the color of the menu to dark blue */
+      text-decoration: none;
+    }
+    
+    .content {
+      flex: 1;
+      background-color: #f9f9f9;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h2>Sidebar</h2>
+      <ul class="menu">
+        <li><a href="#">menu 1</a></li>
+        <li><a href="#">menu 2</a></li>
+        <li><a href="#">menu 3</a></li>
+        <li><a href="#">menu 4</a></li>
+      </ul>
+    </div>
+    <div class="content">
+      
+    </div>
+  </div>
+</body>
+</html>
+
